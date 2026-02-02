@@ -1,0 +1,132 @@
+﻿@page "/"
+@using Subscription_tracker.Services;
+@using Subscription_tracker.models;
+@using System.Data.Common;
+@inject SubscriptionService subscriptionService;
+
+<PageTitle>Subscription_tracker</PageTitle>
+
+
+<div class="Nav">
+    <h1>Subs.io</h1>
+    <div class="nav_side">
+        <button class="Subs_add_btn" @onclick="ToggleForm">Add Subscription</button>
+        <p>Total expense: @totalExpense</p>
+    </div>
+</div>
+
+@if (showForm)
+{
+    <div class="form">
+        <div class="Form_content">
+            <p>@(isEdit ? "Edit Subscription" : "Add Subscription")</p>
+            <input type="text" placeholder="Subscription Name" class="Form_input" @bind="newSubscription.Subs_name" />
+            <input type="number" placeholder="Amount" class="Form_input" @bind="newSubscription.Subs_amount" />
+            <select class="Form_input" @bind="newSubscription.Subs_plan">
+                <option value="" disabled selected>Frequency</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+            <div class="action_btn">
+                <button class="Form_submit_btn" @onclick="AddData">Add Subscription</button>
+                <button class="Form_cancel_btn" @onclick="ToggleForm">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+@if(isEdit){
+    <div class="form">
+        <div class="Form_content">
+            <p>Edit Subscription</p>
+            <input type="text" placeholder="Subscription Name" class="Form_input" @bind="updateData.Subs_name" />
+            <input type="number" placeholder="Amount" class="Form_input" @bind="updateData.Subs_amount" />
+            <select class="Form_input" @bind="updateData.Subs_plan">
+                <option value="" disabled selected>Frequency</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+            <div class="action_btn">
+                <button class="Form_submit_btn" @onclick="AddData">Update Subscription</button>
+                <button class="Form_cancel_btn" @onclick="()=> isEdit=false">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (subscriptions == null)
+{
+    <p>Loading!...</p>
+}
+else
+{
+    <div class="sub_container">
+        @foreach (var sub in subscriptions)
+        {
+            <div class="sub_card">
+                <h2>@sub.Subs_name</h2>
+                <p>Amount: @sub.Subs_amount</p>
+                <p>Plan: @sub.Subs_plan</p>
+                <button class="delete_btn" @onclick="() => DeleteData(sub.ItemId)">Delete</button>
+                <button class="edit_btn" @onclick="() => EditData(sub)">Edit</button>
+            </div>
+        }
+    </div>
+}
+
+
+
+@code {
+    bool showForm = false;
+    bool isEdit = false;
+
+    void ToggleForm()
+    {
+        showForm = !showForm;
+    }
+
+    // code for CRUD operations will go here
+    List<Subscription>? subscriptions;
+
+    public int totalExpense => subscriptions?.Sum(s => s.Subs_amount) ?? 0;
+    Subscription newSubscription = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0 };
+
+    Subscription updateData = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0 };
+    protected override async Task OnInitializedAsync()
+    {
+        subscriptions = await subscriptionService.GetAll();
+    }
+    // POST
+    async Task AddData()
+    {
+        if (isEdit)
+        {
+            await subscriptionService.UpdateSubscription(updateData);
+            isEdit = false;
+        }
+        else
+        {
+            await subscriptionService.AddSubscription(newSubscription);
+            newSubscription = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0 };
+            ToggleForm();
+        }
+    }
+    // DELETE
+    async Task DeleteData(int id)
+    {
+        await subscriptionService.DeleteSubscription(id);
+    }
+    // UPDATE
+    async Task EditData(Subscription sub)
+    {
+        updateData = new Subscription
+        {
+            ItemId = sub.ItemId,
+            Subs_name = sub.Subs_name,
+            Subs_amount = sub.Subs_amount,
+            Subs_plan = sub.Subs_plan
+        };
+        isEdit = true;
+    }
+}
