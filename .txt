@@ -1,0 +1,46 @@
+<div class="sub_container">
+        @foreach (var sub in subscriptions)
+        {
+            <div class="sub_card">
+                <h2>@sub.Subs_name</h2>
+                <p>Amount: @sub.Subs_amount</p>
+                <p>Plan: @sub.Subs_plan</p>
+                <button class="delete_btn" @onclick="() => DeleteData(sub.ItemId)">Delete</button>
+                <button class="edit_btn" @onclick="() => EditData(sub)">Edit</button>
+            </div>
+        }
+    </div>
+    
+    
+    https://nuget.devexpress.com/a7emKLOhgSh1Xu2ScD2O2qQdgA8dBDz5qsPMunQwFUmQB8mBuN/api/v3/index.json
+    
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+    
+    
+    
+    
+     <DxGridCommandColumn Width="160px" Caption="Actions">
+        <CellDisplayTemplate>
+            @{
+                // Cast context to your specific class type
+                var rowData = (Subscription)context.DataItem;
+            }
+            <DxButton Text="Edit" RenderStyle="ButtonRenderStyle.Secondary" CssClass="me-2"
+                Click="@(() => EditData(rowData))" />
+
+            <DxButton Text="Delete" RenderStyle="ButtonRenderStyle.Danger" Click="@(() => DeleteData(rowData.Subs_id))" />
+        </CellDisplayTemplate>
+    </DxGridCommandColumn>
+    
+    
+    <DxGridDataColumn FieldName="@nameof(Subscription.Subs_name)" 
+                  Caption="Subscription Name" />
+
+<DxGridDataColumn FieldName="@nameof(Subscription.Subs_amount)" 
+                  Caption="Amount" 
+                  DisplayFormat="c2" 
+                  TextAlignment="GridTextAlignment.Center" />
+
+<DxGridDataColumn FieldName="@nameof(Subscription.Subs_plan)" 
+                  Caption="Plan" 
+                  TextAlignment="GridTextAlignment.Center" />

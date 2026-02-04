@@ -7,139 +7,51 @@ global styles
 html,
 body {
   font-family: "Inter", sans-serif;
-  background: black;
-  color: white;
 }
 
-/* Navigation Bar */
-.NavMenu {
-  width: 100%;
-}
 .Nav {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
-  margin: 20px 10px;
-}
-.nav_side {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.nav_side p{
-  margin: 0;
-  font-size: 0.9rem;
-}
-.Nav h1 {
-  font-size: 1rem;
-  border: 0.1rem solid grey;
-  padding: 5px 15px;
-  border-radius: 10px;
-}
-.Subs_add_btn {
-  padding: 8px 10px;
-  font-size: 0.89rem;
-  border-radius: 5px;
-  border: none;
-  color: black;
-  background: white;
-  font-weight: 500;
-}
-/* Subscription Form */
-.form {
-  border-radius: 10px;
-  position: fixed;
-  top: -25px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-.Form_content {
-  background: white;
-  width: 400px;
-  height: auto;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 35px;
+  padding: 10px 20px;
+  margin: 20px;
   font-family: "Inter", sans-serif;
-  border-radius: 10px;
 }
-.Form_content input,
-select {
-  padding: 8px;
-  border-radius: 5px;
-  border: 0.1rem solid rgb(228, 228, 228);
-  width: 100%;
-  font-size: 0.9rem;
-}
-::placeholder {
-  font-size: 0.89rem;
-}
-.Form_content p {
+.Nav .brand a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: black;
-  margin: 0;
-  font-size: 1rem;
 }
-.action_btn .Form_submit_btn {
-  padding: 8px 10px;
-  font-size: 0.9rem;
-  border-radius: 5px;
-  border: none;
-  color: #8a8ff8;
+.Nav .nav_item a {
+  text-decoration: none;
+  font-size: .8rem;
   font-weight: 500;
-  background: none;
-}
-.action_btn .Form_cancel_btn {
-  font-size: 0.9rem;
-  border-radius: 5px;
-  border: none;
-  color: black;
-  font-weight: 500;
-  background: #8a8ff8;
+  background: orange;
+  color:black;
   padding: 5px 10px;
-}
-/* subscription container */
-.sub_container{
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  margin-top: 100px;
-}
-.sub_card{
-  background: #1e1e1e;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap:5px;
-}
-.sub_card h2, .sub_card p{
-  margin: 5px 0;
-}
-.sub_card h2{
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-.sub_card p{
-  font-size: 0.9rem;
-  color: grey;
+  border-radius: 5px;
 }
 
-.sub_card .delete_btn{
-  margin-top: 10px;
+/* subscription container */
+.sub_container {
+  margin-top: 50px;
+}
+
+#total_expense {
+  font-size: 0.9rem;
   padding: 5px 10px;
-  font-size: 0.8rem;
   border-radius: 5px;
-  border: none;
-  color: white;
-  background: red;
-  font-weight: 500;
+  color: teal;
+}
+.dxbl-align-center {
+  height: 40px;
+}
+.dxbl-row{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+#edit-header{
+  font-size: 1.2rem;
 }

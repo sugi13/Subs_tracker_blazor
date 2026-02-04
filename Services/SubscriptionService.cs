@@ -10,7 +10,41 @@ namespace Subscription_tracker.Services
 
         private readonly IJSRuntime js;
 
-        private List<Subscription> subscriptions = new List<Subscription>();
+        private List<Subscription> subscriptions = new ()
+        {
+            new Subscription
+            {
+                ItemId = 1,
+                Subs_name = "Netflix",
+                Subs_plan = "Monthly",
+                Subs_amount = 199,
+                Subs_total = 0
+            },
+            new Subscription
+            {
+                ItemId = 2,
+                Subs_name = "Spotify",
+                Subs_plan = "Monthly",
+                Subs_amount = 299,
+                Subs_total = 0
+            },
+             new Subscription
+            {
+                ItemId = 3,
+                Subs_name = "Disney+Hotstar",
+                Subs_plan = "Monthly",
+                Subs_amount = 399,
+                Subs_total = 0
+            },
+             new Subscription
+            {
+                ItemId = 4,
+                Subs_name = "Amazon Prime",
+                Subs_plan = "Monthly",
+                Subs_amount = 199,
+                Subs_total = 0
+            }
+        };
 
         public SubscriptionService(IJSRuntime js)
         {
@@ -49,6 +83,10 @@ namespace Subscription_tracker.Services
             subscriptions.Remove(subscription);
             await SaveToLocalStorage();
         }
+        // Get by Id
+        public Subscription? GetById(int id) => subscriptions.FirstOrDefault(x => x.ItemId == id);
+        
+        
         // LOCAL STORAGE HANDLING
         private async Task LoadFromLocalStorage()
         {

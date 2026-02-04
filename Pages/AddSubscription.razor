@@ -1,0 +1,49 @@
+@page "/add-subscription"
+@using System.ComponentModel.DataAnnotations;
+@inject NavigationManager Nav;
+@inject SubscriptionService SubscriptionService;
+
+<EditForm Model="newSubscription" OnValidSubmit="Add" Context="formContext">
+    <DataAnnotationsValidator />
+    <DxFormLayout>
+        <DxFormLayoutItem Caption="Subscription Name">
+            <DxTextBox @bind-Text="newSubscription.Subs_name" />
+            <ValidationMessage For="@(() => newSubscription.Subs_name)" />
+        </DxFormLayoutItem>
+
+        <DxFormLayoutItem Caption="Amount">
+            <DxSpinEdit @bind-Value="newSubscription.Subs_amount"
+                        Min="0"
+                        Format="c0" />
+            <ValidationMessage For="@(() => newSubscription.Subs_amount)" />
+        </DxFormLayoutItem>
+
+        <DxFormLayoutItem Caption="Plan">
+            <DxComboBox Data="@plans"
+                        @bind-Value="newSubscription.Subs_plan" />
+            <ValidationMessage For="@(() => newSubscription.Subs_plan)" />
+        </DxFormLayoutItem>
+
+        <DxFormLayoutItem>
+            <DxButton Text="Add Subscription"
+                      SubmitFormOnClick="true" />
+        </DxFormLayoutItem>
+    </DxFormLayout>
+</EditForm>
+
+
+
+@code {
+    Subscription newSubscription = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0 };
+    
+       List<string> plans = new()
+    {
+        "Monthly",
+        "Yearly"
+    };
+    
+    private async Task Add() {
+        await SubscriptionService.AddSubscription(newSubscription);
+        Nav.NavigateTo("/");
+    }
+}

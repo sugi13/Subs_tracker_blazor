@@ -1,0 +1,79 @@
+@page "/edit-subscription/{Id:int}"
+@using System.ComponentModel.DataAnnotations;
+@inject SubscriptionService SubscriptionService
+@inject NavigationManager Nav
+
+<h3 id = "edit-header">Edit Subscription</h3>
+
+
+<EditForm Model="UpdateSubs" OnValidSubmit="UpdateSubscription" Context="formContext">
+
+    <DataAnnotationsValidator />
+
+    <DxFormLayout>
+
+        <DxFormLayoutItem Caption="Subscription Name">
+            <DxTextBox @bind-Text="UpdateSubs.Subs_name" />
+            <ValidationMessage For="@(() => UpdateSubs.Subs_name)" />
+        </DxFormLayoutItem>
+
+        <DxFormLayoutItem Caption="Amount">
+            <DxSpinEdit @bind-Value="UpdateSubs.Subs_amount" Min="0" Format="c0" />
+            <ValidationMessage For="@(() => UpdateSubs.Subs_amount)" />
+        </DxFormLayoutItem>
+
+        <DxFormLayoutItem Caption="Plan">
+            <DxComboBox Data="@plans" @bind-Value="UpdateSubs.Subs_plan" />
+            <ValidationMessage For="@(() => UpdateSubs.Subs_plan)" />
+        </DxFormLayoutItem>
+
+        <DxFormLayoutItem>
+            <DxButton Text="Update Subscription" SubmitFormOnClick="true" />
+            <DxButton Text="Cancel" CssClass="ms-2" Click="Cancel" />
+        </DxFormLayoutItem>
+
+    </DxFormLayout>
+</EditForm>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    Subscription UpdateSubs = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0};
+
+    List<string> plans = new()
+{
+"Monthly",
+"Yearly"
+};
+
+    protected override void OnInitialized()
+    {
+        var existing = SubscriptionService.GetById(Id);
+
+        if (existing == null)
+        {
+            Nav.NavigateTo("/");
+            return;
+        }
+
+        // clone object to avoid live edit issues
+        UpdateSubs = new Subscription
+        {
+            ItemId = existing.ItemId,
+            Subs_name = existing.Subs_name,
+            Subs_amount = existing.Subs_amount,
+            Subs_plan = existing.Subs_plan
+        };
+    }
+
+    private async Task UpdateSubscription()
+    {
+        await SubscriptionService.UpdateSubscription(UpdateSubs);
+        Nav.NavigateTo("/");
+    }
+
+    private async Task Cancel()
+    {
+        Nav.NavigateTo("/");
+    }
+}
