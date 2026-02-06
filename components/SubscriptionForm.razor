@@ -1,0 +1,40 @@
+@using System.ComponentModel.DataAnnotations;
+
+<EditForm Model="Model" OnValidSubmit="onSubmit" Context="formContext">
+    <DataAnnotationsValidator />
+    <DxFormLayout>
+        <DxFormLayoutItem Caption="Subscription Name">
+            <DxTextBox @bind-Text="Model.Subs_name" />
+            <ValidationMessage For="@(() => Model.Subs_name)" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Subscription Amount">
+            <DxSpinEdit Min="0" DisplayFormat="c0" @bind-Value="Model.Subs_amount" />
+            <ValidationMessage For="@(() => Model.Subs_amount)" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Subscription plan">
+            <DxComboBox Data="@plans" @bind-Value="Model.Subs_plan" />
+            <ValidationMessage For="@(() => Model.Subs_plan)" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem>
+            <DxButton Text="@ButtonText" SubmitFormOnClick="true"></DxButton>
+            <DxButton Text="Cancel" CssClass="m-2"></DxButton>
+        </DxFormLayoutItem>
+    </DxFormLayout>
+</EditForm>
+
+
+
+@code {
+    [Parameter, EditorRequired]
+    public Subscription Model { get; set; }
+    [Parameter]
+    public string ButtonText { get; set; } = "save";
+
+    [Parameter]
+    public EventCallback onSubmit { get; set; }
+
+    List<string> plans = new(){
+"Monthly",
+"Yearly"
+};
+}

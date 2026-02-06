@@ -1,44 +1,17 @@
 @page "/edit-subscription/{Id:int}"
 @using System.ComponentModel.DataAnnotations;
+@using Subscription_tracker.components
 @inject SubscriptionService SubscriptionService
 @inject NavigationManager Nav
 
-<h3 id = "edit-header">Edit Subscription</h3>
+<h3 id="edit-header">Edit Subscription</h3>
 
-
-<EditForm Model="UpdateSubs" OnValidSubmit="UpdateSubscription" Context="formContext">
-
-    <DataAnnotationsValidator />
-
-    <DxFormLayout>
-
-        <DxFormLayoutItem Caption="Subscription Name">
-            <DxTextBox @bind-Text="UpdateSubs.Subs_name" />
-            <ValidationMessage For="@(() => UpdateSubs.Subs_name)" />
-        </DxFormLayoutItem>
-
-        <DxFormLayoutItem Caption="Amount">
-            <DxSpinEdit @bind-Value="UpdateSubs.Subs_amount" Min="0" Format="c0" />
-            <ValidationMessage For="@(() => UpdateSubs.Subs_amount)" />
-        </DxFormLayoutItem>
-
-        <DxFormLayoutItem Caption="Plan">
-            <DxComboBox Data="@plans" @bind-Value="UpdateSubs.Subs_plan" />
-            <ValidationMessage For="@(() => UpdateSubs.Subs_plan)" />
-        </DxFormLayoutItem>
-
-        <DxFormLayoutItem>
-            <DxButton Text="Update Subscription" SubmitFormOnClick="true" />
-            <DxButton Text="Cancel" CssClass="ms-2" Click="Cancel" />
-        </DxFormLayoutItem>
-
-    </DxFormLayout>
-</EditForm>
+<SubscriptionForm Model="UpdateSubs" onSubmit="UpdateSubscription" />
 
 @code {
     [Parameter] public int Id { get; set; }
 
-    Subscription UpdateSubs = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0};
+    Subscription UpdateSubs = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0 };
 
     List<string> plans = new()
 {
