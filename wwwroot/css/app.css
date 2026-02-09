@@ -23,12 +23,18 @@ body {
   font-weight: 600;
   color: black;
 }
+
+.nav_item {
+  display: flex;
+  gap: 10px;
+}
+
 .Nav .nav_item a {
   text-decoration: none;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 500;
   background: orange;
-  color:black;
+  color: black;
   padding: 5px 10px;
   border-radius: 5px;
 }
@@ -47,11 +53,13 @@ body {
 .dxbl-align-center {
   height: 40px;
 }
+
+#edit-header {
+  font-size: 1.2rem;
+}
 .dxbl-row{
   display: flex;
-  flex-direction: column;
-  gap:10px;
 }
-#edit-header{
-  font-size: 1.2rem;
+.Layout{
+  margin-top: 20px;
 }

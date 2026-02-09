@@ -44,3 +44,38 @@
 <DxGridDataColumn FieldName="@nameof(Subscription.Subs_plan)" 
                   Caption="Plan" 
                   TextAlignment="GridTextAlignment.Center" />
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                          <DxFormLayoutItem Caption="Ship To Name">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Ship To Address">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Ship To State">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Ship To City">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Ship To Postal Code">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Shipment Date">
+            <DxDateEdit T="DateTime" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Delivery Date">
+            <DxDateEdit T="DateTime" />
+        </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Ship To Id">
+            <DxTextBox />
+        </DxFormLayoutItem>
