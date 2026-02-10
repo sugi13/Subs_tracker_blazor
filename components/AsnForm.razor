@@ -2,77 +2,73 @@
 
 <EditForm Model="Model" Context="formContext">
     <DataAnnotationsValidator />
-    <DxFormLayout CaptionPosition="CaptionPosition.Horizontal" CssClass="Layout">
-        <DxFormLayoutGroup>
-            <DxFormLayoutItem Caption="Shipment ID">
-                <DxTextBox />
-            </DxFormLayoutItem>
+    <DxFormLayout aria-colcount="2" CaptionPosition="CaptionPosition.Horizontal" CssClass="Layout">
+        <DxFormLayoutItem Caption="Shipment ID">
+            <DxTextBox NullText="Shipment id"/>
+        </DxFormLayoutItem>
+        <DxFormLayoutGroup Caption="Shipment from Details">
             <DxFormLayoutItem Caption="Ship from Id">
                 <DxDropDownBox />
             </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship from Name">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment from name"/>
             </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To Id">
-                <DxTextBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To Name">
-                <DxTextBox />
-            </DxFormLayoutItem>
-        </DxFormLayoutGroup>
-        <DxFormLayoutGroup ShowBorder="false" CssClass="clean-grp">
+            <DxFormLayoutItem></DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship from Address">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment from Address"/>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship from State">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment from state"/>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship from City">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment from city"/>
             </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship from Portal code">
-                <DxTextBox />
+            <DxFormLayoutItem Caption="Ship from PostalCode">
+                <DxTextBox NullText="Shipment from postalcode"/>
             </DxFormLayoutItem>
         </DxFormLayoutGroup>
-        <DxFormLayoutGroup ShowBorder="false" CssClass="clean-grp">
+        <DxFormLayoutGroup Caption="Shipment To Details" ShowBorder="false" CssClass="clean-grp">
+            <DxFormLayoutItem Caption="Shipment To Id">
+                <DxDropDownBox />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship To Name">
+                <DxTextBox  NullText="Shipment to name"/>
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship To Address">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment to Address"/>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship To State">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment to state"/>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="Ship To City">
-                <DxTextBox />
+                <DxTextBox NullText="Shipment to city"/>
             </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To Portal code">
-                <DxTextBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Shipment Date">
-                <DxDateEdit T="DateTime" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Delivery Date">
-                <DxDateEdit T="DateTime" />
+            <DxFormLayoutItem Caption="Ship To PostalCode">
+                <DxTextBox NullText="Shipment to PostalCode"/>
             </DxFormLayoutItem>
         </DxFormLayoutGroup>
-                <DxFormLayoutGroup ShowBorder="false" CssClass="clean-grp">
-            <DxFormLayoutItem Caption="Carrier SCAC">
-                <DxTextBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Carrier Name">
-                <DxTextBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Bill of Lading Number">
-                <DxTextBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="PRO/Tracking Number">
-                <DxTextBox />
-            </DxFormLayoutItem>
-        </DxFormLayoutGroup>
-        <DxFormLayoutItem CssClass="actions">
-            <DxUpload UploadUrl="api/upload"
-          SelectButtonText="Upload ASN"
-          ShowProgressPanel="true"
-          MaxFileSize="5242880" />
+        <DxFormLayoutItem Caption="Shipment Date">
+            <DxDateEdit T="DateTime" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Expected Delivery Date">
+            <DxDateEdit T="DateTime" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Carrier SCAC">
+            <DxTextBox NullText="Carrier SCAc"/>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Carrier Name">
+            <DxTextBox NullText="Carrier name"/>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Bill of Landing Number" CaptionCssClass="size">
+            <DxTextBox NullText="Bill of landing number"/>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem>
+            <DxUpload UploadUrl="api/upload" SelectButtonText="Upload ASN" ShowProgressPanel="true" MaxFileSize="5242880" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem>
             <DxButton Text="Save"></DxButton>
             <DxButton Text="Cancel"></DxButton>
         </DxFormLayoutItem>

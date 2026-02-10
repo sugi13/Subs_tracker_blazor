@@ -61,5 +61,11 @@ body {
   display: flex;
 }
 .Layout{
-  margin-top: 20px;
+  margin: 20px;
+}
+.dxbl-text-edit-input::placeholder {
+  font-size: .8rem;
+}
+.dxbl-text{
+  font-size: .8rem !important;
 }
