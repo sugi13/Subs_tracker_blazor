@@ -2,11 +2,12 @@
 @using System.ComponentModel.DataAnnotations;
 @using Subscription_tracker.components
 
+@inject NavigationManager Nav;
 
 
-
-
+<DxButton Click="@(() => Nav.NavigateTo($"/po-detail-entry"))" >Add PO Detail Entry</DxButton>
 <AsnForm Model="newModel" />
+
 
 @code {
     ASN_sample_model newModel = new ASN_sample_model()

@@ -1,0 +1,17 @@
+@page "/po-detail-entry"
+@using System.ComponentModel.DataAnnotations;
+@using Subscription_tracker.components
+
+
+<DetailEntryForm Model = "newPoEntry"/>
+
+
+@code {
+    Detail_entry_model newPoEntry = new Detail_entry_model()
+    {
+        Item_description =  "",
+        Expiry_date = "",
+        Lot_number = 0,
+        Unit_of_measure = 0,
+    };
+}
