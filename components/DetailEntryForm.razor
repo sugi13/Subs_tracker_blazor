@@ -5,46 +5,20 @@
 <EditForm Model="Model" Context="formContext">
     <DataAnnotationsValidator />
     <DxFormLayout>
-        <DxFormLayoutGroup Caption="Shipment from Details">
-            <DxFormLayoutItem Caption="Ship from Id">
-                <DxDropDownBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Purchase Order Number">
-                <DxTextBox NullText="Purhcase Order Number" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Line Item Number">
-                <DxTextBox NullText="Line Item Number" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="GTIN/UPC">
-                <DxDropDownBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Quantity Shipped">
-                <DxTextBox NullText="Quantity Shipped" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Lot Number">
-                <DxTextBox NullText="Lot Number" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Item Description">
-                <DxTextBox NullText="Item Description" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Unit of Measure">
-                <DxTextBox NullText="Unit of Measure" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Expiry Date">
-                <DxDateEdit T="DateTime" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem>
-                <DxButton>Save</DxButton>
-                <DxButton>Cancel</DxButton>
-            </DxFormLayoutItem>
-        </DxFormLayoutGroup>
+       <DxFormLayoutGroup>
+         <CustomInput Placeholder="Shipment Id" label="Ship from id"/>
+        <CustomInput Placeholder="purchase order Number" label="Purchase Order Number"/>
+        <CustomInput Placeholder="Line Item Number" label="Line Item Number"/>
+        <CustomInput Placeholder="Lot Number" label="Lot Number"/>
+        <CustomInput Placeholder="Unit of Measure" label="Lot Number"/>
+        <CustomInput Placeholder="Quantity shipped" label= "Quantity shipped"/>
+        <CustomInput Placeholder="Item Description" label= "Item Description"/>
+        <CustomButton SaveText="Save" CancelText="Cancel"/>
+       </DxFormLayoutGroup>
     </DxFormLayout>
 </EditForm>
 
 @code {
     [Parameter, Required]
-    public Detail_entry_model Model { get; set; }
+    public Detail_entry_model? Model { get; set; }
 }

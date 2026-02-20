@@ -1,0 +1,18 @@
+<DxFormLayoutItem>
+    <Template>
+        <DxButton Text="@SaveText" CssClass="" Click="@onFormSubmit"></DxButton>
+        <DxButton Text="@CancelText" CssClass="" Click="@onCancel"></DxButton>
+    </Template>
+</DxFormLayoutItem>
+
+
+@code {
+    [Parameter] public string? SaveText {get; set;}
+    
+    [Parameter] public string? CancelText {get; set;}
+    
+    [Parameter] public EventCallback onFormSubmit {get; set;}
+    
+    [Parameter] public EventCallback onCancel {get; set;}    
+    
+}

@@ -17,7 +17,6 @@
 else
 {
     <div class="sub_container">
-        <p id="total_expense">Total expense: @totalExpense</p>
         <DxGrid Data="@subscriptions" ShowBorders="true">
             <Columns>
                 <DxGridDataColumn FieldName="@nameof(Subscription.ItemId)" Caption="Item ID"
@@ -52,7 +51,7 @@ else
 
     List<Subscription>? subscriptions;
 
-    public int totalExpense => subscriptions?.Sum(s => s.Subs_amount) ?? 0;
+    // public int totalExpense => subscriptions?.Sum(s => s.Subs_amount) ?? 0;
     
     // GET
     protected override async Task OnInitializedAsync()

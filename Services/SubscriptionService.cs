@@ -17,7 +17,7 @@ namespace Subscription_tracker.Services
                 ItemId = 1,
                 Subs_name = "Netflix",
                 Subs_plan = "Monthly",
-                Subs_amount = 199,
+                Subs_amount = "199",
                 Subs_total = 0
             },
             new Subscription
@@ -25,7 +25,7 @@ namespace Subscription_tracker.Services
                 ItemId = 2,
                 Subs_name = "Spotify",
                 Subs_plan = "Monthly",
-                Subs_amount = 299,
+                Subs_amount = "299",
                 Subs_total = 0
             },
              new Subscription
@@ -33,7 +33,7 @@ namespace Subscription_tracker.Services
                 ItemId = 3,
                 Subs_name = "Disney+Hotstar",
                 Subs_plan = "Monthly",
-                Subs_amount = 399,
+                Subs_amount = "399",
                 Subs_total = 0
             },
              new Subscription
@@ -41,7 +41,7 @@ namespace Subscription_tracker.Services
                 ItemId = 4,
                 Subs_name = "Amazon Prime",
                 Subs_plan = "Monthly",
-                Subs_amount = 199,
+                Subs_amount = "499",
                 Subs_total = 0
             }
         };
@@ -101,6 +101,5 @@ namespace Subscription_tracker.Services
             var json = JsonSerializer.Serialize(subscriptions);
             await js.InvokeVoidAsync("localStorage.setItem", Subs_Key, json);
         }
-        // calculate total expense
     }
 }

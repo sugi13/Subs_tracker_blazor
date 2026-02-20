@@ -1,81 +1,142 @@
-<div class="sub_container">
-        @foreach (var sub in subscriptions)
-        {
-            <div class="sub_card">
-                <h2>@sub.Subs_name</h2>
-                <p>Amount: @sub.Subs_amount</p>
-                <p>Plan: @sub.Subs_plan</p>
-                <button class="delete_btn" @onclick="() => DeleteData(sub.ItemId)">Delete</button>
-                <button class="edit_btn" @onclick="() => EditData(sub)">Edit</button>
-            </div>
-        }
-    </div>
-    
-    
-    https://nuget.devexpress.com/a7emKLOhgSh1Xu2ScD2O2qQdgA8dBDz5qsPMunQwFUmQB8mBuN/api/v3/index.json
-    
-    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
-    
-    
-    
-    
-     <DxGridCommandColumn Width="160px" Caption="Actions">
-        <CellDisplayTemplate>
-            @{
-                // Cast context to your specific class type
-                var rowData = (Subscription)context.DataItem;
-            }
-            <DxButton Text="Edit" RenderStyle="ButtonRenderStyle.Secondary" CssClass="me-2"
-                Click="@(() => EditData(rowData))" />
-
-            <DxButton Text="Delete" RenderStyle="ButtonRenderStyle.Danger" Click="@(() => DeleteData(rowData.Subs_id))" />
-        </CellDisplayTemplate>
-    </DxGridCommandColumn>
-    
-    
-    <DxGridDataColumn FieldName="@nameof(Subscription.Subs_name)" 
-                  Caption="Subscription Name" />
-
-<DxGridDataColumn FieldName="@nameof(Subscription.Subs_amount)" 
-                  Caption="Amount" 
-                  DisplayFormat="c2" 
-                  TextAlignment="GridTextAlignment.Center" />
-
-<DxGridDataColumn FieldName="@nameof(Subscription.Subs_plan)" 
-                  Caption="Plan" 
-                  TextAlignment="GridTextAlignment.Center" />
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                          <DxFormLayoutItem Caption="Ship To Name">
-            <DxTextBox />
+@DxResourceManager.RegisterTheme(Themes.Fluent)
+ @DxResourceManager.RegisterScripts()
+ 
+ 
+ 
+ 
+  <DxFormLayoutItem Caption="Subscription Name">
+            <DxTextBox @bind-Text="Model.Subs_name" />
+            <ValidationMessage For="@(() => Model.Subs_name)" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Ship To Address">
-            <DxTextBox />
+        <DxFormLayoutItem Caption="Subscription Amount">
+            <DxSpinEdit Min="0" DisplayFormat="c0" @bind-Value="Model.Subs_amount" />
+            <ValidationMessage For="@(() => Model.Subs_amount)" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Ship To State">
-            <DxTextBox />
+        <DxFormLayoutItem Caption="Subscription plan">
+            <DxComboBox Data="@plans" @bind-Value="Model.Subs_plan" />
+            <ValidationMessage For="@(() => Model.Subs_plan)" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Ship To City">
-            <DxTextBox />
+        <DxFormLayoutItem>
+            <DxButton Text="@ButtonText" SubmitFormOnClick="true"></DxButton>
+            <DxButton Text="Cancel" CssClass="m-2"></DxButton>
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Ship To Postal Code">
-            <DxTextBox />
+        
+        
+        
+        
+        
+                <DxFormLayoutGroup Caption="Shipment from Details">
+            <DxFormLayoutItem Caption="Ship from Id">
+                <DxDropDownBox />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Purchase Order Number">
+                <DxTextBox NullText="Purhcase Order Number" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Line Item Number">
+                <DxTextBox NullText="Line Item Number" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="GTIN/UPC">
+                <DxDropDownBox />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Quantity Shipped">
+                <DxTextBox NullText="Quantity Shipped" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Lot Number">
+                <DxTextBox NullText="Lot Number" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Item Description">
+                <DxTextBox NullText="Item Description" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Unit of Measure">
+                <DxTextBox NullText="Unit of Measure" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Expiry Date">
+                <DxDateEdit T="DateTime" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem>
+                <Template Context = "Btn_context">
+                    <DxButton>Save</DxButton>
+                    <DxButton>Cancel</DxButton>
+                </Template>
+            </DxFormLayoutItem>
+        </DxFormLayoutGroup>
+        
+        
+        
+        
+        
+        
+        
+        
+               <DxFormLayoutItem Caption="Shipment ID">
+            <DxTextBox NullText="Shipment id" />
         </DxFormLayoutItem>
+        <DxFormLayoutGroup Caption="Shipment from Details">
+            <DxFormLayoutItem Caption="Ship from Id">
+                <DxDropDownBox />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship from Name">
+                <DxTextBox NullText="Shipment from name" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship from Address">
+                <DxTextBox NullText="Shipment from Address" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship from State">
+                <DxTextBox NullText="Shipment from state" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship from City">
+                <DxTextBox NullText="Shipment from city" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship from PostalCode">
+                <DxTextBox NullText="Shipment from postalcode" />
+            </DxFormLayoutItem>
+        </DxFormLayoutGroup>
+        <DxFormLayoutGroup Caption="Shipment To Details" ShowBorder="false" CssClass="clean-grp">
+            <DxFormLayoutItem Caption="Shipment To Id">
+                <DxDropDownBox />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship To Name">
+                <DxTextBox NullText="Shipment to name" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem></DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship To Address">
+                <DxTextBox NullText="Shipment to Address" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship To State">
+                <DxTextBox NullText="Shipment to state" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship To City">
+                <DxTextBox NullText="Shipment to city" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Ship To PostalCode">
+                <DxTextBox NullText="Shipment to PostalCode" />
+            </DxFormLayoutItem>
+        </DxFormLayoutGroup>
         <DxFormLayoutItem Caption="Shipment Date">
             <DxDateEdit T="DateTime" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Delivery Date">
+        <DxFormLayoutItem Caption="Expected Delivery Date">
             <DxDateEdit T="DateTime" />
         </DxFormLayoutItem>
-                <DxFormLayoutItem Caption="Ship To Id">
-            <DxTextBox />
+        <DxFormLayoutItem Caption="Carrier SCAC">
+            <DxTextBox NullText="Carrier SCAc" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Carrier Name">
+            <DxTextBox NullText="Carrier name" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Bill of Landing Number" CaptionCssClass="size">
+            <DxTextBox NullText="Bill of landing number" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem>
+            <DxUpload UploadUrl="api/upload" SelectButtonText="Upload ASN" ShowProgressPanel="true"
+                      MaxFileSize="5242880" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem>
+          <CustomButton SaveText="Save" CancelText="Cancel"/>
         </DxFormLayoutItem>

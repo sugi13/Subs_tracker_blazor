@@ -11,7 +11,7 @@
 @code {
     [Parameter] public int Id { get; set; }
 
-    Subscription UpdateSubs = new() { Subs_name = "", Subs_plan = "", Subs_amount = 0 };
+    Subscription UpdateSubs = new() { Subs_name = "", Subs_plan = "", Subs_amount = ""};
 
     List<string> plans = new()
 {

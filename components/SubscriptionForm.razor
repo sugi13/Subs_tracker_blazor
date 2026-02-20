@@ -1,23 +1,20 @@
-@using System.ComponentModel.DataAnnotations;
-
 <EditForm Model="Model" OnValidSubmit="onSubmit" Context="formContext">
     <DataAnnotationsValidator />
     <DxFormLayout>
-        <DxFormLayoutItem Caption="Subscription Name">
-            <DxTextBox @bind-Text="Model.Subs_name" />
-            <ValidationMessage For="@(() => Model.Subs_name)" />
+        <DxFormLayoutItem>
+            <CustomInput label="Subscription Name" Placeholder="Enter Subscription name" @bind-Value="Model.Subs_name"
+                     ValidationExpression="() => Model.Subs_name" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Subscription Amount">
-            <DxSpinEdit Min="0" DisplayFormat="c0" @bind-Value="Model.Subs_amount" />
-            <ValidationMessage For="@(() => Model.Subs_amount)" />
+          <DxFormLayoutItem>
+            <CustomInput label="Subscription amount" Placeholder="Enter Subscription amount" @bind-Value="Model.Subs_amount"
+                     ValidationExpression="() => Model.Subs_amount" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Subscription plan">
-            <DxComboBox Data="@plans" @bind-Value="Model.Subs_plan" />
-            <ValidationMessage For="@(() => Model.Subs_plan)" />
+         <DxFormLayoutItem>
+            <CustomInput label="Subscription plan" Placeholder="Enter Subscription plan" @bind-Value="Model.Subs_plan"
+                     ValidationExpression="() => Model.Subs_amount" />
         </DxFormLayoutItem>
         <DxFormLayoutItem>
-            <DxButton Text="@ButtonText" SubmitFormOnClick="true"></DxButton>
-            <DxButton Text="Cancel" CssClass="m-2"></DxButton>
+            <CustomButton SaveText="Add Subs" onFormSubmit="onSubmit" CancelText="Cancel"/>
         </DxFormLayoutItem>
     </DxFormLayout>
 </EditForm>
@@ -27,14 +24,8 @@
 @code {
     [Parameter, EditorRequired]
     public Subscription Model { get; set; }
-    [Parameter]
-    public string ButtonText { get; set; } = "save";
 
     [Parameter]
     public EventCallback onSubmit { get; set; }
 
-    List<string> plans = new(){
-"Monthly",
-"Yearly"
-};
 }

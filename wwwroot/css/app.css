@@ -57,15 +57,14 @@ body {
 #edit-header {
   font-size: 1.2rem;
 }
-.dxbl-row{
-  display: flex;
+.custom-textbox input {
+    padding: 8px 12px !important;
 }
-.Layout{
-  margin: 20px;
+.dxfl-item {
+    padding-bottom: 18px !important;
 }
-.dxbl-text-edit-input::placeholder {
-  font-size: .8rem;
-}
-.dxbl-text{
-  font-size: .8rem !important;
+
+.dxfl-caption {
+    font-weight: 500;
+    margin-bottom: 6px;
 }

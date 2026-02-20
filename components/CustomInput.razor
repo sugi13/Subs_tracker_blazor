@@ -1,0 +1,25 @@
+
+<DxFormLayoutItem Caption="@label" CaptionPosition="CaptionPosition.Horizontal" ColSpanLg="6">
+    <DxTextBox Text="@Value" NullText="@Placeholder" TextChanged="@onTextChanged"
+               TextExpression="ValidationExpression" CssClass="custom-textbox" />
+    <ValidationMessage For="@ValidationExpression" />
+</DxFormLayoutItem>
+
+
+@code {
+    [Parameter] public string?  label { get; set; } // holds the label - text
+    [Parameter] public string? Placeholder { get; set; } // placeholder text
+    [Parameter] public string? Value { get; set; } // holds the textbox value
+    [Parameter] public EventCallback<string?> ValueChanged { get; set; }
+
+    [Parameter] public Expression<Func<string>>? ValidationExpression { get; set; }
+
+
+    private async Task onTextChanged(string? NewValue) // here new value receives the value = "spotify"
+    {
+        Value = NewValue;
+        await ValueChanged.InvokeAsync(NewValue);
+        Console.WriteLine(NewValue); // it updates the model property value as "spotify"
+    }
+
+}

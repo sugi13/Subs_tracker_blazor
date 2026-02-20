@@ -1,77 +1,24 @@
-@using System.ComponentModel.DataAnnotations
 
 <EditForm Model="Model" Context="formContext">
     <DataAnnotationsValidator />
-    <DxFormLayout aria-colcount="2" CaptionPosition="CaptionPosition.Horizontal" CssClass="Layout">
-        <DxFormLayoutItem Caption="Shipment ID">
-            <DxTextBox NullText="Shipment id"/>
-        </DxFormLayoutItem>
+    <DxFormLayout CaptionPosition="CaptionPosition.Horizontal">
         <DxFormLayoutGroup Caption="Shipment from Details">
-            <DxFormLayoutItem Caption="Ship from Id">
-                <DxDropDownBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship from Name">
-                <DxTextBox NullText="Shipment from name"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship from Address">
-                <DxTextBox NullText="Shipment from Address"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship from State">
-                <DxTextBox NullText="Shipment from state"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship from City">
-                <DxTextBox NullText="Shipment from city"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship from PostalCode">
-                <DxTextBox NullText="Shipment from postalcode"/>
-            </DxFormLayoutItem>
+            @*add custom dropbox here with id*@
+            <CustomInput label="ship from name" Placeholder="shipment from name" />
+            <CustomInput label="ship from address" Placeholder="shipment from Address"/>
+            <CustomInput label = "ship from city" Placeholder="shipment from city"/>
+            <CustomInput label = "ship from state" Placeholder="shipment from state"/>
+            <CustomInput label="shipment from postalcode" Placeholder="shipment from postalcode"/>
         </DxFormLayoutGroup>
-        <DxFormLayoutGroup Caption="Shipment To Details" ShowBorder="false" CssClass="clean-grp">
-            <DxFormLayoutItem Caption="Shipment To Id">
-                <DxDropDownBox />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To Name">
-                <DxTextBox  NullText="Shipment to name"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem></DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To Address">
-                <DxTextBox NullText="Shipment to Address"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To State">
-                <DxTextBox NullText="Shipment to state"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To City">
-                <DxTextBox NullText="Shipment to city"/>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Ship To PostalCode">
-                <DxTextBox NullText="Shipment to PostalCode"/>
-            </DxFormLayoutItem>
+          <DxFormLayoutGroup Caption="Shipment to Details">
+            @*add custom dropbox here*@
+            <CustomInput label="ship to name" Placeholder="shipment to name"/>
+            <CustomInput label="ship to address" Placeholder="shipment to Address"/>
+            <CustomInput label = "ship to city" Placeholder="shipment to city"/>
+            <CustomInput label = "ship to state" Placeholder="shipment to state"/>
+            <CustomInput label="shipment to postalcode" Placeholder="shipment to postalcode"/>
         </DxFormLayoutGroup>
-        <DxFormLayoutItem Caption="Shipment Date">
-            <DxDateEdit T="DateTime" />
-        </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Expected Delivery Date">
-            <DxDateEdit T="DateTime" />
-        </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Carrier SCAC">
-            <DxTextBox NullText="Carrier SCAc"/>
-        </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Carrier Name">
-            <DxTextBox NullText="Carrier name"/>
-        </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Bill of Landing Number" CaptionCssClass="size">
-            <DxTextBox NullText="Bill of landing number"/>
-        </DxFormLayoutItem>
-        <DxFormLayoutItem>
-            <DxUpload UploadUrl="api/upload" SelectButtonText="Upload ASN" ShowProgressPanel="true" MaxFileSize="5242880" />
-        </DxFormLayoutItem>
-        <DxFormLayoutItem>
-            <DxButton Text="Save"></DxButton>
-            <DxButton Text="Cancel"></DxButton>
-        </DxFormLayoutItem>
+        <CustomButton SaveText="Save" CancelText="Cancel"/>
     </DxFormLayout>
 </EditForm>
 
